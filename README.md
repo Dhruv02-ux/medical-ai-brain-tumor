@@ -4,6 +4,16 @@ NeuroScan AI is an end-to-end **Medical AI application** designed for automated 
 
 ---
 
+## 🚀 Live Demo
+
+🌐 **Web Application**
+
+👉 https://neuroscan-ai-jeyi.onrender.com/
+
+📖 **Swagger API Documentation**
+
+👉 https://neuroscan-ai-jeyi.onrender.com/docs
+
 ## 🌟 Key Features
 
 - 🧠 **Multi-Class Classification**
@@ -107,22 +117,6 @@ docker run -d \
 -p 8000:8000 \
 --name brain_tumor_service \
 medical-ai-brain-tumor:v1
-```
-
----
-
-## 4️⃣ Open the Application
-
-### 🌐 Web Dashboard
-
-```
-http://localhost:8000
-```
-
-### 📖 Swagger API Documentation
-
-```
-http://localhost:8000/docs
 ```
 
 ---
