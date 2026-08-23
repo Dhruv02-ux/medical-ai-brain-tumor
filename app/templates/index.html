@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan AI | Diagnostic Decision Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-indigo-500 selection:text-white">
+    <div class="max-w-6xl mx-auto px-4 py-6 sm:py-10">
+        <!-- Top Navbar -->
+        <header
+            class="flex flex-col sm:flex-row justify-between items-center pb-6 border-b border-slate-800/80 mb-8 gap-4">
+            <div class="flex items-center space-x-3.5">
+                <div
+                    class="w-11 h-11 bg-gradient-to-tr from-indigo-600 to-violet-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/25">
+                    <i class="fa-solid fa-brain text-xl text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+                        NeuroScan AI <span
+                            class="text-xs bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded-full border border-indigo-500/30">v2.0</span>
+                    </h1>
+                    <p class="text-xs text-slate-400 font-medium">Deep Learning Diagnostic Support & Clinical RAG</p>
+                </div>
+            </div>
+
+            <div
+                class="flex items-center space-x-2.5 bg-slate-900/90 border border-emerald-500/30 px-3.5 py-1.5 rounded-full shadow-inner">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span class="text-xs font-semibold text-emerald-400 tracking-wide">Live Now</span>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+
+            <!-- Left Column: Acquisition & Visuals -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 backdrop-blur-xl shadow-xl space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+                        <i class="fa-solid fa-file-medical text-indigo-400"></i> MRI Scan Acquisition
+                    </h2>
+                    <span class="text-[11px] text-slate-500 font-mono">JPG, PNG, DICOM</span>
+                </div>
+
+                <!-- Dropzone Area -->
+                <div id="drop-area" onclick="document.getElementById('mri-input').click()"
+                    class="border-2 border-dashed border-slate-700/80 hover:border-indigo-500 rounded-2xl p-7 text-center cursor-pointer transition-all duration-300 bg-slate-950/40 hover:bg-indigo-950/20 group">
+                    <input type="file" id="mri-input" accept="image/jpeg,image/png,image/jpg" class="hidden"
+                        onchange="handleFileSelect(event)">
+
+                    <div id="upload-prompt" class="space-y-3 py-4">
+                        <div
+                            class="w-14 h-14 bg-slate-800/80 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform shadow-inner border border-slate-700">
+                            <i
+                                class="fa-solid fa-cloud-arrow-up text-2xl text-indigo-400 group-hover:text-indigo-300"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-200">Click or drag & drop scan here</p>
+                        <p class="text-xs text-slate-500">Axial Brain MRI scans recommended</p>
+                    </div>
+
+                    <div id="preview-container" class="hidden space-y-3">
+                        <div class="relative overflow-hidden rounded-xl border border-slate-700 bg-black/40">
+                            <img id="image-preview" class="max-h-64 mx-auto rounded-lg object-contain" />
+                        </div>
+                        <p id="file-name" class="text-xs text-indigo-300 font-mono truncate"></p>
+                    </div>
+                </div>
+
+                <button id="analyze-btn" onclick="analyzeScan()" disabled
+                    class="w-full py-3.5 px-6 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 disabled:from-slate-800 disabled:to-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-microscope text-sm"></i>
+                    <span>Run AI Diagnosis</span>
+                </button>
+
+                <!-- Explainability Heatmap Container -->
+                <div id="gradcam-section" class="hidden pt-4 border-t border-slate-800 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                            <i class="fa-solid fa-wand-magic-sparkles text-orange-400"></i> Explainability View
+                        </h3>
+                        <button id="gradcam-toggle-btn" onclick="toggleGradcam()"
+                            class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-200 flex items-center gap-1.5 border border-slate-700 transition">
+                            <i class="fa-solid fa-fire text-orange-400"></i> Show Heatmap
+                        </button>
+                    </div>
+                    <div class="relative rounded-xl overflow-hidden border border-slate-800 bg-black/40">
+                        <img id="gradcam-image" class="hidden w-full max-h-64 object-contain rounded-lg" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Results & Clinical Report -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 backdrop-blur-xl shadow-xl space-y-6">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+                        <i class="fa-solid fa-square-poll-vertical text-emerald-400"></i> Diagnostic Analysis
+                    </h2>
+                </div>
+
+                <div id="results-placeholder"
+                    class="py-20 text-center space-y-3 border border-slate-800/80 rounded-2xl bg-slate-950/20">
+                    <i class="fa-solid fa-dna text-3xl text-slate-700"></i>
+                    <p class="text-slate-400 text-sm font-medium">Upload a scan and execute inference to view results.
+                    </p>
+                </div>
+
+                <div id="results-content" class="hidden space-y-6">
+                    <!-- Classification Card -->
+                    <div
+                        class="bg-slate-950/60 border border-slate-800 rounded-xl p-5 text-center relative overflow-hidden">
+                        <div
+                            class="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-indigo-500 to-transparent">
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-slate-400">Primary
+                            Classification</span>
+                        <div id="diagnosis-text"
+                            class="text-2xl sm:text-3xl font-extrabold text-indigo-400 mt-1 uppercase tracking-wide">--
+                        </div>
+                        <div class="mt-2 text-xs text-slate-400">
+                            Confidence: <span id="confidence-text" class="font-bold text-emerald-400">0%</span>
+                        </div>
+                        <div id="low-confidence-warning"
+                            class="hidden mt-2 text-xs text-amber-400 bg-amber-950/30 border border-amber-800/50 py-1.5 px-3 rounded-lg inline-block">
+                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> Low confidence — radiologist review
+                            recommended.
+                        </div>
+                    </div>
+
+                    <!-- Probability Bars -->
+                    <div class="space-y-3">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Probability Distribution
+                        </h3>
+                        <div id="probability-bars" class="space-y-2.5"></div>
+                    </div>
+
+                    <!-- Clinical Report Section -->
+                    <div class="pt-4 border-t border-slate-800 space-y-3">
+                        <button id="report-btn" onclick="generateReport()"
+                            class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold rounded-xl transition-all shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-waveform"></i> Generate Clinical Report
+                        </button>
+
+                        <div id="report-section" class="hidden space-y-3">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">AI Medical Report
+                                </h3>
+                                <label
+                                    class="flex items-center gap-2 text-xs text-slate-400 cursor-pointer hover:text-slate-300">
+                                    <input type="checkbox" id="simplify-toggle" onchange="toggleSimplify()"
+                                        class="accent-indigo-500 rounded">
+                                    <span>Patient Summary</span>
+                                </label>
+                            </div>
+                            <div id="report-text"
+                                class="text-xs sm:text-sm text-slate-300 leading-relaxed font-mono whitespace-pre-line bg-slate-950/80 p-4 rounded-xl border border-slate-800 max-h-56 overflow-y-auto">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Q&A Assistant Section -->
+                    <div class="pt-4 border-t border-slate-800 space-y-3">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Ask Decision Support AI
+                        </h3>
+                        <div id="chat-thread" class="space-y-2 max-h-48 overflow-y-auto pr-1"></div>
+
+                        <div class="flex gap-2">
+                            <input id="chat-input" type="text"
+                                placeholder="Ask about treatments, staging, guidelines..."
+                                onkeydown="if(event.key==='Enter') askQuestion()"
+                                class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition">
+                            <button onclick="askQuestion()"
+                                class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 rounded-xl text-sm transition">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer disclaimer -->
+                <div class="pt-4 border-t border-slate-800/60 text-center">
+                    <p class="text-[11px] text-slate-500 font-medium">
+                        <i class="fa-solid fa-circle-info mr-1 text-slate-400"></i> For Screening Assistance Only.
+                        Always verify with a certified Neuro-Radiologist.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

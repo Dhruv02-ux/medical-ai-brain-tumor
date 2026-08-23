@@ -1,0 +1,55 @@
+WHO Classification of CNS Tumors — Summary Reference Guide
+
+GLIOMAS
+Gliomas are the most common primary malignant brain tumors, arising from glial cells. They are classified based on histological and molecular features.
+
+Glioblastoma (GBM) — WHO Grade IV
+Glioblastoma is the most aggressive diffuse glioma. It is characterized by IDH-wildtype status, microvascular proliferation, and/or necrosis. Median survival is approximately 14-16 months with standard treatment. Standard treatment includes maximal safe surgical resection followed by concurrent temozolomide and radiation therapy (Stupp protocol). MGMT promoter methylation status is an important prognostic and predictive biomarker.
+
+Astrocytoma, IDH-mutant — WHO Grades 2-4
+IDH-mutant astrocytomas are diffuse gliomas with IDH1 or IDH2 mutations and ATRX loss. They generally have a better prognosis than IDH-wildtype glioblastoma. Grade 2 tumors are low-grade, while Grade 3 (anaplastic) and Grade 4 show increasing malignancy.
+
+Oligodendroglioma, IDH-mutant and 1p/19q-codeleted — WHO Grades 2-3
+Oligodendrogliomas are defined by both IDH mutation and 1p/19q codeletion. They typically respond well to chemotherapy (PCV regimen or temozolomide) and have a relatively favorable prognosis among diffuse gliomas.
+
+MENINGIOMAS
+Meningiomas arise from meningothelial cells of the arachnoid layer. They account for approximately 37% of primary CNS tumors.
+
+WHO Grade 1 (Benign) Meningiomas
+Most meningiomas are Grade 1 and are treated with surgical resection. Subtypes include meningothelial, fibrous, transitional, psammomatous, and angiomatous variants. Observation with serial imaging is appropriate for small, asymptomatic tumors.
+
+WHO Grade 2 (Atypical) Meningiomas
+Atypical meningiomas have increased mitotic activity (4-19 mitoses per 10 HPF) or specific histological features. They have higher recurrence rates than Grade 1 tumors. Adjuvant radiation therapy may be considered after subtotal resection.
+
+WHO Grade 3 (Malignant) Meningiomas
+Malignant meningiomas include anaplastic (malignant) variants with aggressive behavior, brain invasion, and high recurrence rates. Treatment typically involves surgery plus radiation therapy.
+
+PITUITARY TUMORS
+Pituitary tumors (now classified as pituitary neuroendocrine tumors, PitNETs) arise from the anterior pituitary gland. They are generally benign but can cause significant morbidity through hormonal excess or mass effect.
+
+Functioning Pituitary Adenomas
+Prolactinomas: Most common functioning type. Treatment is primarily medical (dopamine agonists: cabergoline, bromocriptine).
+Growth hormone-secreting: Cause acromegaly. Surgery (transsphenoidal) is first-line treatment.
+ACTH-secreting: Cause Cushing's disease. Surgery is the primary treatment.
+TSH-secreting and gonadotropin-secreting: Rare subtypes.
+
+Non-functioning Pituitary Adenomas
+Do not produce active hormones. Present with mass effect symptoms (visual field defects, headache, hypopituitarism). Treatment is surgical (transsphenoidal approach) when symptomatic.
+
+Pituitary Carcinomas
+Extremely rare. Defined by craniospinal or systemic metastasis. Poor prognosis with limited treatment options including temozolomide.
+
+NO TUMOR — Normal Brain MRI Findings
+A normal brain MRI shows no mass lesions, no abnormal enhancement, and normal ventricular size and morphology. The gray-white matter differentiation is preserved. No midline shift or mass effect is present. Normal variants may include cavum septum pellucidum, mega cisterna magna, and developmental venous anomalies.
+
+DIAGNOSTIC IMAGING RECOMMENDATIONS
+MRI with and without gadolinium contrast is the standard diagnostic imaging modality for brain tumors. Key sequences include T1-weighted, T2-weighted, FLAIR, diffusion-weighted imaging (DWI), and post-contrast T1-weighted images. Advanced techniques include MR spectroscopy, perfusion imaging, and functional MRI for surgical planning.
+
+TREATMENT PRINCIPLES
+Multidisciplinary approach involving neurosurgery, radiation oncology, medical oncology, and neuro-oncology. Treatment decisions should consider tumor type, grade, molecular markers, patient age, performance status, and tumor location. Standard treatment modalities include surgery, radiation therapy, and systemic therapy (chemotherapy, targeted therapy, immunotherapy).
+
+FOLLOW-UP GUIDELINES
+Post-treatment surveillance MRI should be performed at regular intervals (typically every 3-6 months initially). Response assessment criteria include RANO (Response Assessment in Neuro-Oncology) criteria. Pseudoprogression should be considered in the early post-treatment period, particularly after concurrent chemoradiation.
+
+DISCLAIMER
+This summary is provided for educational screening assistance only. It does not replace consultation with a certified neuro-radiologist or neuro-oncologist. All diagnoses must be confirmed through appropriate clinical, pathological, and molecular evaluation.
