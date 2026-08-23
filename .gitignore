@@ -1,0 +1,27 @@
+# Environment Variables & Secrets
+.env
+.env.*
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Large Datasets & Temp Files
+data/raw/
+kaggle_cache/
+pip_temp/
+
+# Large Model Files (GitHub 100MB limit ke liye)
+models/*.keras
+models/*.h5
+
+# OS generated files
+.DS_Store
+Thumbs.db
