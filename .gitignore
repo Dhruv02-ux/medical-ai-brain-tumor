@@ -25,3 +25,9 @@ models/*.h5
 # OS generated files
 .DS_Store
 Thumbs.db
+__pycache__/
+*.pyc
+
+.env
+.env.*
+!.env.example
