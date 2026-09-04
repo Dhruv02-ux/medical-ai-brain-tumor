@@ -8,6 +8,7 @@ _SIMPLIFY_PROMPT = ChatPromptTemplate.from_template(
 
 def simplify_report(report: str) -> str:
     try:
-        return (_SIMPLIFY_PROMPT | get_llm(max_tokens=200) | StrOutputParser()).invoke({"report": report})
+        res = (_SIMPLIFY_PROMPT | get_llm(max_tokens=600) | StrOutputParser()).invoke({"report": report})
+        return str(res).strip()
     except Exception:
         return report  # fallback: original report, never fail silently

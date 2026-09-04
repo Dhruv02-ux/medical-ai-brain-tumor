@@ -37,8 +37,9 @@ def answer_question(question: str) -> str:
             context = "Brain tumors include Gliomas, Meningiomas, and Pituitary adenomas categorized by WHO CNS criteria."
 
         # 2. Invoke Groq LLM
-        chain = _QA_PROMPT | get_llm(max_tokens=200) | StrOutputParser()
-        return chain.invoke({"context": context, "question": question})
+        chain = _QA_PROMPT | get_llm(max_tokens=500) | StrOutputParser()
+        res = chain.invoke({"context": context, "question": question})
+        return str(res).strip()
 
     except Exception as e:
         # Terminal par exact error print hoga debugging ke liye
