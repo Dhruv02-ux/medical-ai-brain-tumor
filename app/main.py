@@ -144,3 +144,7 @@ async def simplify_endpoint(req: SimplifyRequest):
 @app.post("/ask")
 async def ask_endpoint(req: QuestionRequest):
     return {"answer": await run_in_threadpool(answer_question, req.question)}
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
