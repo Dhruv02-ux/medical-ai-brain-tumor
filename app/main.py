@@ -126,11 +126,39 @@ async def gradcam(
 @app.get("/samples/{sample_name}")
 async def get_sample_scan(sample_name: str):
     """Provides authentic clinical brain MRI test scans for 1-click live demo."""
-    clean_name = os.path.basename(sample_name).replace(".jpg", "") + ".jpg"
+    clean_base = os.path.basename(sample_name).replace(".jpg", "")
+    clean_name = clean_base + ".jpg"
     path = os.path.join("app/static/samples", clean_name)
+
+    # Fallback between 'healthy' and 'notumor' aliases if one is missing
+    if not os.path.exists(path):
+        if clean_base == "healthy":
+            path = os.path.join("app/static/samples", "notumor.jpg")
+        elif clean_base == "notumor":
+            path = os.path.join("app/static/samples", "healthy.jpg")
+
     if not os.path.exists(path):
         raise HTTPException(status_code=404, detail="Sample scan not found")
-    return FileResponse(path, media_type="image/jpeg")
+
+    # Defensive self-healing: In case Git LFS left a pointer file, resolve actual image from LFS cache
+    try:
+        with open(path, "rb") as f:
+            header = f.read(50)
+        if header.startswith(b"version https://git-lfs.github.com/spec/v1"):
+            with open(path, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+            for line in lines:
+                if line.startswith("oid sha256:"):
+                    oid = line.strip().split(":")[-1]
+                    lfs_path = os.path.join(".git", "lfs", "objects", oid[:2], oid[2:4], oid)
+                    if os.path.exists(lfs_path):
+                        with open(lfs_path, "rb") as src, open(path, "wb") as dst:
+                            dst.write(src.read())
+                        break
+    except Exception as e:
+        print(f"[Sample Loader Warning] LFS resolution check: {e}")
+
+    return FileResponse(path, media_type="image/jpeg", headers={"Cache-Control": "public, max-age=3600"})
 
 @app.post("/generate-report")
 async def report_endpoint(req: ReportRequest):

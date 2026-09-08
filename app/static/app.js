@@ -183,10 +183,19 @@ async function loadSampleScan(sampleType, btnElement = null) {
         btnElement.disabled = true;
     }
     try {
-        const res = await fetch(`/samples/${sampleType}.jpg`);
-        if (!res.ok) throw new Error("Could not load sample scan");
+        let res = await fetch(`/samples/${sampleType}.jpg`);
+        if (!res.ok) {
+            // Fallback to static route
+            res = await fetch(`/static/samples/${sampleType}.jpg`);
+        }
+        if (!res.ok) throw new Error(`Could not load sample scan (HTTP ${res.status})`);
+
         const blob = await res.blob();
-        const file = new File([blob], `${sampleType}_mri_sample.jpg`, { type: "image/jpeg" });
+        if (!blob || blob.size < 200) {
+            throw new Error("Received empty or invalid image file for sample.");
+        }
+
+        const file = new File([blob], `${sampleType}_mri_sample.jpg`, { type: blob.type || "image/jpeg" });
         loadFileInput(file);
         
         // Auto-run diagnosis for quick seamless demo
@@ -194,6 +203,7 @@ async function loadSampleScan(sampleType, btnElement = null) {
             analyzeScan();
         }, 150);
     } catch (err) {
+        console.error("Sample scan load failed:", err);
         alert("Failed to load sample: " + err.message);
     } finally {
         if (btnElement) {
