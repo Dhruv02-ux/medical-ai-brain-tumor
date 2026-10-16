@@ -91,7 +91,7 @@ Brain tumor diagnosis requires rapid, microscopic-level radiological precision w
  ────────────────       ──────────────────       ─────────────────────   ───────────────────────
  • EfficientNetB0       • Grad-CAM Heatmaps      • Primary vs Secondary  • WHO CNS v5 Guidelines
  • 96.43% Val Acc       • Interactive Split        Confidence Gap        • FAISS Vector Store
- • 91.75% Test Acc        Comparison Slider      • Close-Call Trigger    • Zero-Hallucination
+ • 91.75% Test Acc        Comparison Slider      • Close-Call Trigger    • Mostly Zero-Hallucination
  • 100% Normal Recall   • Turbo, Jet, Inferno,     Flag (<20% margin)      Radiological Guardrails
  • 4-Class Softmax        Viridis Colormaps      • WHO Staging Badges    • Patient Simplifier
  • Keras 3 Native       • Zero-Wash Alpha Mask   • Risk Stratification   • PubMed Literature Q&A
