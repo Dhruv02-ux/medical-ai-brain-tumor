@@ -16,7 +16,7 @@
 ## 📌 Table of Contents
 
 - [🌟 Executive Summary](#-executive-summary)
-- [🌐 Live Deployment & Demo Links](#-live-deployment--demo-links)
+- [🌐 Live Deployment & Demo Links](#-live-deployment--demo-links) 
 - [🎯 Key Innovations & Capabilities](#-key-innovations--capabilities)
 - [🏗️ System Architecture & Workflow](#️-system-architecture--workflow)
   - [High-Level Architectural Topology](#high-level-architectural-topology)
@@ -62,11 +62,16 @@ Brain tumor diagnosis requires rapid, microscopic-level radiological precision w
 
 ## 🌐 Live Deployment & Demo Links
 
+> [!NOTE]  
+> **Architecture & Deployment Status:**  
+> • **v1.0 Lightweight Prototype:** Hosted on free-tier cloud instances for basic CNN inference testing.  
+> • **v2.0 Enterprise Clinical Edition:** Built with local/private containerization (Docker, Grad-CAM, FAISS RAG Copilot, and Groq LPU). Watch the full end-to-end video walkthrough below or run locally using Docker.
+
 | Service | Access Link | Description |
 |---|---|---|
-| 🌐 **Live Web Application** | [neuroscan-ai-jeyi.onrender.com](https://neuroscan-ai-jeyi.onrender.com/) | Interactive Cybernetic Clinical Web Dashboard |
-| 📖 **Interactive Swagger API** | [neuroscan-ai-jeyi.onrender.com/docs](https://neuroscan-ai-jeyi.onrender.com/docs) | OpenAPI 3.0 interactive endpoints & test playground |
-| 🚀 **Hugging Face Space** | [huggingface.co/spaces/DhruvDhiman001/neuroscan-ai](https://huggingface.co/spaces/DhruvDhiman001/neuroscan-ai) | Mirrored cloud repository and live demonstration |
+| 🎥 **Walkthrough Video Demo** | [Watch Demo Video](https://github.com/Dhruv02-ux/medical-ai-brain-tumor) | Complete UI walkthrough, Grad-CAM explainability & clinical copilot |
+| 🌐 **Live Web Prototype (v1.0)** | [neuroscan-ai-jeyi.onrender.com](https://neuroscan-ai-jeyi.onrender.com/) | Live cloud web deployment for screening tests |
+| 📖 **Interactive Swagger API** | [neuroscan-ai-jeyi.onrender.com/docs](https://neuroscan-ai-jeyi.onrender.com/docs) | OpenAPI interactive endpoints & test playground |
 | 📦 **GitHub Repository** | [github.com/Dhruv02-ux/medical-ai-brain-tumor](https://github.com/Dhruv02-ux/medical-ai-brain-tumor) | Source code, models, vector indexes, and docs |
 
 ---
@@ -708,7 +713,6 @@ Developed with focus on engineering rigor, clinical guardrails, and accessible A
 🎓 B.Tech Computer Science & Engineering (Artificial Intelligence & Data Science)  
 💼 Specialization: Applied Deep Learning, Computer Vision, Medical Imaging, & Production MLOps  
 🌐 GitHub: [@Dhruv02-ux](https://github.com/Dhruv02-ux)  
-🤗 Hugging Face: [@DhruvDhiman001](https://huggingface.co/DhruvDhiman001)
 
 ---
 
